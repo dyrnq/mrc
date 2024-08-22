@@ -1,7 +1,7 @@
 # multi-registry-cache
 
 
-Inspired by <https://github.com/obeone/multi-registry-cache> and <https://github.com/archef2000/rathole-docker/blob/main/entrypoint.sh>
+Inspired by [obeone/multi-registry-cache](https://github.com/obeone/multi-registry-cache) and [archef2000/rathole-docker](https://github.com/archef2000/rathole-docker/blob/main/entrypoint.sh)
 
 ## feature
 
