@@ -79,6 +79,24 @@ root@34b4b2dec8a3:/# tree -L 2 /data/
     └── registry.k8s.io
 ```
 
+envs description
+
+
+0~15 because redis defaults to 16 databases
+
+
+| name                 | description      | default | required |
+|----------------------|------------------|---------|----------|
+| REG_NAME_            | name             |         | y        |
+| REG_PORT_            | port             |         | y        |
+| REG_PROXY_REMOTEURL_ | proxy remoteurl  |         | y        |
+| REG_PROXY_USERNAME_  | proxy username   |         | n        |
+| REG_PROXY_PASSWORD_  | proxy password   |         | n        |
+| REG_REDIS_ADDR_      | redis addr       |         | y        |
+| REG_REDIS_PASSWORD_  | redis password   |         | n        |
+| REG_ENV_             | distribution env |         | n        |
+
+
 ## mirrors
 
 ### docker
