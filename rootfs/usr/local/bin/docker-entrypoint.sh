@@ -82,6 +82,7 @@ EOF
 
 create_redis() {
 
+redis_databases="${1}"
 redis_data="${DIST_HOME}"/redis/data
 redis_log="${DIST_HOME}"/redis/log
 redis_conf="${DIST_HOME}"/redis/redis.conf
@@ -91,7 +92,7 @@ chown -R dist:dist "${redis_data}"
 chown -R dist:dist "${redis_log}"
 if [ ! -f "${redis_conf}" ]; then
   cp --verbose --force /etc/redis/redis.conf "${redis_conf}"
-  sed -i -e '/^dir/d' -e '/^logfile/d' "${redis_conf}"
+  sed -i -e '/^dir/d' -e '/^logfile/d' -e "s|^databases.*|databases ${redis_databases}|g" "${redis_conf}"
   chown -R dist:dist "${redis_conf}"
 fi
 
@@ -109,9 +110,9 @@ EOF
 }
 
 _main() {
-
-create_redis
-for reg_counter in {0..15}; do
+redis_databases="${REDIS_DATABASES:-16}"
+create_redis "${redis_databases}"
+for reg_counter in $(seq 0 $((redis_databases-1))); do
   reg_name="REG_NAME_${reg_counter}"
   if [[ -z "${!reg_name}" ]]; then
     continue;
