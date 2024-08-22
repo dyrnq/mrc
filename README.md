@@ -110,8 +110,10 @@ envs description
 | REG_PROXY_REMOTEURL_ | proxy remoteurl  |         | y        |
 | REG_PROXY_USERNAME_  | proxy username   |         | n        |
 | REG_PROXY_PASSWORD_  | proxy password   |         | n        |
+| REG_PROXY_TTL_       | proxy ttl        |   168h  | n        |
 | REG_REDIS_ADDR_      | redis addr       |         | y        |
 | REG_REDIS_PASSWORD_  | redis password   |         | n        |
+| REG_LOG_LEVEL_       | log level        |   info  | n        |
 | REG_ENV_             | distribution env |         | n        |
 | REDIS_DATABASES      | redis databases  |   16    | n        |
 

@@ -7,9 +7,11 @@ function create_valid_reg() {
 
 name="REG_NAME_${1}"
 port="REG_PORT_${1}"
+log_level="REG_LOG_LEVEL_${1}"
 proxy_remoteurl="REG_PROXY_REMOTEURL_${1}"
 proxy_username="REG_PROXY_USERNAME_${1}"
 proxy_password="REG_PROXY_PASSWORD_${1}"
+proxy_ttl="REG_PROXY_TTL_${1}"
 redis_addr="REG_REDIS_ADDR_${1}"
 redis_password="REG_REDIS_PASSWORD_${1}"
 redis_db="REG_REDIS_DB_${1}"
@@ -27,7 +29,7 @@ version: 0.1
 log:
   accesslog:
     disabled: true
-  level: info
+  level: ${!log_level:-info}
   formatter: text
   fields:
     service: registry
@@ -50,7 +52,7 @@ proxy:
   remoteurl: ${!proxy_remoteurl}
   username: ${!proxy_username}
   password: ${!proxy_password}
-  ttl: 168h
+  ttl: ${!proxy_ttl:-168h}
 redis:
   addr: ${!redis_addr}
   password: ${!redis_password}
