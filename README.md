@@ -12,6 +12,9 @@ Inspired by [obeone/multi-registry-cache](https://github.com/obeone/multi-regist
 - built-in redis
 - built-in distribution <https://github.com/distribution/distribution>
 
+
+see [Dockerfile](https://github.com/dyrnq/mrc/blob/main/Dockerfile)
+
 ## usage
 
 eg.
@@ -158,3 +161,4 @@ ref
 ## ref
 
 - <https://github.com/distribution/distribution>
+- <https://github.com/dyrnq/mrc>
