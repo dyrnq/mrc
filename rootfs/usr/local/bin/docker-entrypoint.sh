@@ -17,10 +17,23 @@ redis_password="REG_REDIS_PASSWORD_${1}"
 redis_db="REG_REDIS_DB_${1}"
 env="REG_ENV_${1}"
 
+storage="REG_STORAGE_${1}"
+storage_val=${!storage:-filesystem}
+
 mkdir -p --verbose /etc/distribution/"${!name}"
-rootdirectory="${DIST_HOME}"/registry/"${!name}"
-mkdir -p --verbose "${rootdirectory}"
-chown -R dist:dist "${rootdirectory}"
+if [ "${storage_val,,}" = "filesystem" ]; then
+  rootdirectory="${DIST_HOME}"/registry/"${!name}"
+  mkdir -p --verbose "${rootdirectory}"
+  chown -R dist:dist "${rootdirectory}"
+fi
+
+s3_accesskey="REG_STORAGE_S3_ACCESSKEY_${1}"
+s3_secretkey="REG_STORAGE_S3_SECRETKEY_${1}"
+s3_region="REG_STORAGE_S3_REGION_${1}"
+s3_regionendpoint="REG_STORAGE_S3_REGIONENDPOINT_${1}"
+s3_bucket="REG_STORAGE_S3_BUCKET_${1}"
+s3_rootdirectory="REG_STORAGE_S3_ROOTDIRECTORY_${1}"
+
 
 cat >/etc/distribution/"${!name}"/config.yml<<EOF
 # https://github.com/distribution/distribution
@@ -38,8 +51,40 @@ storage:
   cache:
     #blobdescriptor: inmemory
     blobdescriptor: redis
+EOF
+
+if [ "${storage_val,,}" = "filesystem" ]; then
+cat >>/etc/distribution/"${!name}"/config.yml<<EOF
   filesystem:
     rootdirectory: ${rootdirectory}
+EOF
+fi
+
+if [ "${storage_val,,}" = "s3" ]; then
+cat >>/etc/distribution/"${!name}"/config.yml<<EOF
+  s3:
+    accesskey: ${!s3_accesskey}
+    secretkey: ${!s3_secretkey}
+    region: ${!s3_region:-us-east-1}
+    regionendpoint: ${!s3_regionendpoint}
+    # forcepathstyle: true
+    # accelerate: false
+    bucket: ${!s3_bucket}
+    # encrypt: true
+    # keyid: mykeyid
+    # secure: true
+    # v4auth: true
+    # chunksize: 5242880
+    # multipartcopychunksize: 33554432
+    # multipartcopymaxconcurrency: 100
+    # multipartcopythresholdsize: 33554432
+    rootdirectory: ${!s3_rootdirectory}
+    usedualstack: false
+    # loglevel: debug
+EOF
+fi
+
+cat >>/etc/distribution/"${!name}"/config.yml<<EOF
 http:
   addr: 0.0.0.0:${!port}
   secret: asecretforlocaldevelopment

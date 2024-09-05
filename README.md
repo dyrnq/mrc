@@ -106,19 +106,27 @@ envs description
 
 0~15 because redis defaults to 16 databases, use `REDIS_DATABASES` env , eg. `--env REDIS_DATABASES=32`.
 
-| name                 | description      | default | required |
-|----------------------|------------------|---------|----------|
-| REG_NAME_            | name             |         | y        |
-| REG_PORT_            | port             |         | y        |
-| REG_PROXY_REMOTEURL_ | proxy remoteurl  |         | y        |
-| REG_PROXY_USERNAME_  | proxy username   |         | n        |
-| REG_PROXY_PASSWORD_  | proxy password   |         | n        |
-| REG_PROXY_TTL_       | proxy ttl        |   168h  | n        |
-| REG_REDIS_ADDR_      | redis addr       |         | y        |
-| REG_REDIS_PASSWORD_  | redis password   |         | n        |
-| REG_LOG_LEVEL_       | log level        |   info  | n        |
-| REG_ENV_             | distribution env |         | n        |
-| REDIS_DATABASES      | redis databases  |   16    | n        |
+| name                           | description       | default    | required |
+|--------------------------------|-------------------|------------|----------|
+| REG_NAME_                      | name              |            | y        |
+| REG_PORT_                      | port              |            | y        |
+| REG_PROXY_REMOTEURL_           | proxy remoteurl   |            | y        |
+| REG_PROXY_USERNAME_            | proxy username    |            | n        |
+| REG_PROXY_PASSWORD_            | proxy password    |            | n        |
+| REG_PROXY_TTL_                 | proxy ttl         | 168h       | n        |
+| REG_REDIS_ADDR_                | redis addr        |            | y        |
+| REG_REDIS_PASSWORD_            | redis password    |            | n        |
+| REG_LOG_LEVEL_                 | log level         | info       | n        |
+| REG_ENV_                       | distribution env  |            | n        |
+| REG_STORAGE_                   | storage           | filesystem | y        |
+| REG_STORAGE_S3_ACCESSKEY_      | s3 accesskey      |            | y        |
+| REG_STORAGE_S3_SECRETKEY_      | s3 secretkey      |            | y        |
+| REG_STORAGE_S3_REGIONENDPOINT_ | s3 regionendpoint |            | y        |
+| REG_STORAGE_S3_REGION_         | s3 region         | us-east-1  | n        |
+| REG_STORAGE_S3_BUCKET_         | s3 bucket         |            | y        |
+| REG_STORAGE_S3_ROOTDIRECTORY_  | s3 rootdirectory  |            | n        |
+| REDIS_DATABASES                | redis databases   | 16         | n        |
+
 
 ## mirrors
 
