@@ -119,12 +119,12 @@ envs description
 | REG_LOG_LEVEL_                 | log level         | info       | n        |
 | REG_ENV_                       | distribution env  |            | n        |
 | REG_STORAGE_                   | storage           | filesystem | y        |
-| REG_STORAGE_S3_ACCESSKEY_      | s3 accesskey      |            | y        |
-| REG_STORAGE_S3_SECRETKEY_      | s3 secretkey      |            | y        |
-| REG_STORAGE_S3_REGIONENDPOINT_ | s3 regionendpoint |            | y        |
-| REG_STORAGE_S3_REGION_         | s3 region         | us-east-1  | n        |
-| REG_STORAGE_S3_BUCKET_         | s3 bucket         |            | y        |
-| REG_STORAGE_S3_ROOTDIRECTORY_  | s3 rootdirectory  |            | n        |
+| REG_STORAGE_S3_ACCESSKEY_      | s3 accesskey      |            | y(s3)    |
+| REG_STORAGE_S3_SECRETKEY_      | s3 secretkey      |            | y(s3)    |
+| REG_STORAGE_S3_REGIONENDPOINT_ | s3 regionendpoint |            | y(s3)    |
+| REG_STORAGE_S3_REGION_         | s3 region         | us-east-1  | y(s3)    |
+| REG_STORAGE_S3_BUCKET_         | s3 bucket         |            | y(s3)    |
+| REG_STORAGE_S3_ROOTDIRECTORY_  | s3 rootdirectory  |            | y(s3)    |
 | REDIS_DATABASES                | redis databases   | 16         | n        |
 
 
