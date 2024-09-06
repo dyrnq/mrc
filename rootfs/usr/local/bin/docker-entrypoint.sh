@@ -35,6 +35,12 @@ s3_bucket="REG_STORAGE_S3_BUCKET_${1}"
 s3_rootdirectory="REG_STORAGE_S3_ROOTDIRECTORY_${1}"
 
 
+if [ -z "${!s3_rootdirectory}" ]; then
+  s3_rootdirectory_val="/registry/${!name}"
+else
+  s3_rootdirectory_val="${!s3_rootdirectory}"
+fi
+
 cat >/etc/distribution/"${!name}"/config.yml<<EOF
 # https://github.com/distribution/distribution
 # https://distribution.github.io/distribution/about/configuration/#list-of-configuration-options
@@ -78,7 +84,7 @@ cat >>/etc/distribution/"${!name}"/config.yml<<EOF
     # multipartcopychunksize: 33554432
     # multipartcopymaxconcurrency: 100
     # multipartcopythresholdsize: 33554432
-    rootdirectory: ${!s3_rootdirectory}
+    rootdirectory: ${s3_rootdirectory_val}
     usedualstack: false
     # loglevel: debug
 EOF
