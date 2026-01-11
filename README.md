@@ -125,6 +125,7 @@ envs description
 | REG_STORAGE_S3_REGION_         | s3 region         | us-east-1          | n(s3)    |
 | REG_STORAGE_S3_BUCKET_         | s3 bucket         |                    | y(s3)    |
 | REG_STORAGE_S3_ROOTDIRECTORY_  | s3 rootdirectory  | /registry/${!name} | n(s3)    |
+| REG_STORAGE_S3_FORCEPATHSTYLE_ | s3 forcepathstyle | true               | n(s3)    |
 | REDIS_DATABASES                | redis databases   | 16                 | n        |
 
 
