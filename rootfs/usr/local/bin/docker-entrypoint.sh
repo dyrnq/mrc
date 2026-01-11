@@ -31,6 +31,7 @@ s3_accesskey="REG_STORAGE_S3_ACCESSKEY_${1}"
 s3_secretkey="REG_STORAGE_S3_SECRETKEY_${1}"
 s3_region="REG_STORAGE_S3_REGION_${1}"
 s3_regionendpoint="REG_STORAGE_S3_REGIONENDPOINT_${1}"
+s3_forcepathstyle="REG_STORAGE_S3_FORCEPATHSTYLE_${1}"
 s3_bucket="REG_STORAGE_S3_BUCKET_${1}"
 s3_rootdirectory="REG_STORAGE_S3_ROOTDIRECTORY_${1}"
 
@@ -73,7 +74,7 @@ cat >>/etc/distribution/"${!name}"/config.yml<<EOF
     secretkey: ${!s3_secretkey}
     region: ${!s3_region:-us-east-1}
     regionendpoint: ${!s3_regionendpoint}
-    # forcepathstyle: true
+    forcepathstyle: ${!s3_forcepathstyle:-true}
     # accelerate: false
     bucket: ${!s3_bucket}
     # encrypt: true
@@ -89,6 +90,14 @@ cat >>/etc/distribution/"${!name}"/config.yml<<EOF
     # loglevel: debug
 EOF
 fi
+# registry --version
+# registry github.com/docker/distribution 2.8.3
+# registry github.com/distribution/distribution/v3 3.0.0
+
+redis_addrs_str="";
+if registry --version |grep -q v3; then
+  redis_addrs_str="addrs: [ ${!redis_addr} ]"
+fi;
 
 cat >>/etc/distribution/"${!name}"/config.yml<<EOF
 http:
@@ -117,6 +126,7 @@ redis:
     idletimeout: 300s
   tls:
     enabled: false
+  $redis_addrs_str
 EOF
 
 
