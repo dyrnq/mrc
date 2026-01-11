@@ -1,4 +1,4 @@
-FROM debian:bookworm
+FROM debian:trixie
 
 ARG DISTRIBUTION_VERSION
 ARG user=dist
@@ -10,7 +10,7 @@ ARG GOSU_VERSION
 ENV DEBIAN_FRONTEND=noninteractive \
     LANG=en_US.utf8 \
     DIST_HOME=${DIST_HOME:-/data} \
-    GOSU_VERSION=${GOSU_VERSION:-1.17} \
+    GOSU_VERSION=${GOSU_VERSION:-1.19} \
     DISTRIBUTION_VERSION=${DISTRIBUTION_VERSION:-2.8.3}
 
 RUN set -eux; \

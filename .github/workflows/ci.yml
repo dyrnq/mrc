@@ -3,7 +3,7 @@ name: ci
 on:
   push:
     branches:
-      - 'main'
+      - 'distribution/v2'
     tags:
       - '*'
     paths-ignore:
@@ -36,11 +36,12 @@ jobs:
           echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
       - name: Build dockerfile (with no push)
         run: |
-          latest_tag="--tag ${{ secrets.DOCKER_USERNAME }}/mrc:latest";
+          latest_tag="--tag ${{ secrets.DOCKER_USERNAME }}/mrc:2.8.3";
           echo $latest_tag;
 
           docker buildx build \
           --platform linux/amd64,linux/arm64/v8 \
+          --build-arg DISTRIBUTION_VERSION=2.8.3 \
           --output "type=image,push=false" \
           --file ./Dockerfile . \
           $latest_tag
@@ -55,11 +56,12 @@ jobs:
       -
         name: Build dockerfile (with push)
         run: |
-          latest_tag="--tag ${{ secrets.DOCKER_USERNAME }}/mrc:latest";
+          latest_tag="--tag ${{ secrets.DOCKER_USERNAME }}/mrc:2.8.3";
           echo $latest_tag;
 
           docker buildx build \
           --platform linux/amd64,linux/arm64/v8 \
+          --build-arg DISTRIBUTION_VERSION=2.8.3 \
           --output "type=image,push=true" \
           --file ./Dockerfile . \
           $latest_tag
