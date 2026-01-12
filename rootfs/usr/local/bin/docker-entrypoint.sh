@@ -16,7 +16,7 @@ redis_addr="REG_REDIS_ADDR_${1}"
 redis_password="REG_REDIS_PASSWORD_${1}"
 redis_db="REG_REDIS_DB_${1}"
 env="REG_ENV_${1}"
-
+storage_redirect_disable="REG_STORAGE_REDIRECT_DISABLE_${1}"
 storage="REG_STORAGE_${1}"
 storage_val=${!storage:-filesystem}
 
@@ -55,6 +55,8 @@ log:
     service: registry
     environment: staging
 storage:
+  redirect:
+    disable: ${!storage_redirect_disable:-true}
   cache:
     #blobdescriptor: inmemory
     blobdescriptor: redis

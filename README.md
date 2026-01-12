@@ -119,6 +119,7 @@ envs description
 | REG_LOG_LEVEL_                 | log level         | info               | n        |
 | REG_ENV_                       | distribution env  |                    | n        |
 | REG_STORAGE_                   | storage           | filesystem         | y        |
+| REG_STORAGE_REDIRECT_DISABLE_  | redirect disable  | true               | n        |
 | REG_STORAGE_S3_ACCESSKEY_      | s3 accesskey      |                    | y(s3)    |
 | REG_STORAGE_S3_SECRETKEY_      | s3 secretkey      |                    | y(s3)    |
 | REG_STORAGE_S3_REGIONENDPOINT_ | s3 regionendpoint |                    | y(s3)    |
@@ -127,6 +128,7 @@ envs description
 | REG_STORAGE_S3_ROOTDIRECTORY_  | s3 rootdirectory  | /registry/${!name} | n(s3)    |
 | REG_STORAGE_S3_FORCEPATHSTYLE_ | s3 forcepathstyle | true               | n(s3)    |
 | REDIS_DATABASES                | redis databases   | 16                 | n        |
+| OTEL_TRACES_EXPORTER           |                   |                    | n        |
 
 
 
