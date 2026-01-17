@@ -136,6 +136,8 @@ cat >/etc/supervisor/conf.d/reg-"${!name}".ini<<EOF
 [program:${!name}]
 environment = ${!env}
 command = gosu dist registry serve /etc/distribution/${!name}/config.yml
+autostart = true
+autorestart = true
 stdout_logfile = /dev/stdout
 stdout_logfile_maxbytes = 0
 redirect_stderr = true
@@ -167,6 +169,7 @@ cat >/etc/supervisor/conf.d/redis-server.ini<<EOF
 [program:redis-server]
 command = gosu dist redis-server "${redis_conf}" --daemonize no --protected-mode no --appendonly yes --bind "* -::*" --dir ${redis_data} --logfile "${redis_log}/redis-server.log"
 autostart = true
+autorestart = true
 stdout_logfile = /dev/stdout
 stdout_logfile_maxbytes = 0
 redirect_stderr = true
