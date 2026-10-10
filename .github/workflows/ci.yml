@@ -21,6 +21,7 @@ jobs:
           vers:
           - "2.8.3"
           - "3.0.0"
+          - "3.1.2"
     steps:
       -
         name: Checkout
@@ -44,7 +45,7 @@ jobs:
       - name: Build dockerfile (with no push)
         run: |
           latest_tag="--tag ${{ secrets.DOCKER_USERNAME }}/mrc:${{ matrix.vers }}";
-          if [ "${{ matrix.vers }}" = "3.0.0" ]; then
+          if [ "${{ matrix.vers }}" = "3.1.2" ]; then
             latest_tag="${latest_tag} --tag ${{ secrets.DOCKER_USERNAME }}/mrc:latest";
           fi
           echo $latest_tag;
@@ -67,7 +68,7 @@ jobs:
         name: Build dockerfile (with push)
         run: |
           latest_tag="--tag ${{ secrets.DOCKER_USERNAME }}/mrc:${{ matrix.vers }}";
-          if [ "${{ matrix.vers }}" = "3.0.0" ]; then
+          if [ "${{ matrix.vers }}" = "3.1.2" ]; then
             latest_tag="${latest_tag} --tag ${{ secrets.DOCKER_USERNAME }}/mrc:latest";
           fi
 
